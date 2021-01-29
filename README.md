@@ -35,4 +35,4 @@
 ## Download
 - Tap "Releases"
 
-     ---  Let's make sounds 🎙️🎶  ---
+     -Let's make sounds 🎙️🎶-
