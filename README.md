@@ -15,6 +15,15 @@
 - Install Audio Modification Library Module if you using other module which also patching audio_platform_info.xml and/or mixer_paths*.xml
 - Reboot
 
+## Optional
+- The default mic volume value is 6. You can increase the mic volume using this command before flashing the module. This is for example to use volume 7:
+
+  `su`
+
+  `setprop mic.volume 7`
+
+  You can change the value between 7 until 10.
+
 ## Troubleshootings
 - Use Audio Modification Library module if you using other module which also patching audio_platform_info.xml and/or mixer_paths*.xml.
 - Delete /data/adb/modules/MicFix folder via recovery if you facing bootloop and send copied and zipped /data/system/dropbox files for fix.
