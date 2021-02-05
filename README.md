@@ -22,7 +22,7 @@
 
   `setprop mic.volume 7`
 
-  You can change the value between 7 until 10.
+  You can change the value between 7 until 10. After that, reflash the module.
 
 ## Troubleshootings
 - Use Audio Modification Library module if you using other module which also patching audio_platform_info.xml and/or mixer_paths*.xml.
