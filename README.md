@@ -2,7 +2,7 @@
 
 ## Descriptions
 - Fixing bad quality or cracking sounds input of microphone in audio/video recording
-- Patching audio_platform_info.xml and/or mixer_paths*.xml files systemlessly
+- Patching mixer_paths*.xml files systemlessly
 
 ## Requirements
 - Magisk installed
@@ -12,13 +12,13 @@
 
 ## Installation Guide
 - Install the module via Magisk Manager or Recovery
-- Install Audio Modification Library Module if you using other module which also patching audio_platform_info.xml and/or mixer_paths*.xml
+- Install Audio Modification Library Module if you using other audio mods
 - Reboot
 
 ## Optional
 - The default mic volume value is 6. You can increase the mic volume using this command before flashing the module. This is for example to use volume 7:
 
-  `su`
+  su
 
   `setprop mic.volume 7`
 
@@ -28,15 +28,6 @@
 - Use Audio Modification Library module if you using other module which also patching audio_platform_info.xml and/or mixer_paths*.xml.
 - Delete /data/adb/modules/MicFix folder via recovery if you facing bootloop and send copied and zipped /data/system/dropbox files for fix.
 - Open issues with sending those patched files and full logcats if this module is not working for your device.
-
-## Attention!
-- Always make nandroid backup before install or updating version, these are just experiments!
-- Don't report anything without sending those patched files and full logcats!
-- Special thanks to you for helps, tests, and supports.
-
-## Telegram
-- https://t.me/audioryukimods
-- https://t.me/modsandco
 
 ## Donate
 - https://www.paypal.me/reiryuki
