@@ -29,7 +29,8 @@
 - Delete /data/adb/modules/MicFix folder via recovery if you facing bootloop and send copied and zipped /data/system/dropbox files for fix.
 - Open issues with sending those patched files and full logcats if this module is not working for your device.
 
-## Donate
+## Thanks for Donations
+- https://t.me/audioryukimods/2619
 - https://www.paypal.me/reiryuki
 
 ## Download
