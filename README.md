@@ -25,7 +25,7 @@
   You can change the value between 7 until 10. After that, reflash the module.
 
 ## Troubleshootings
-- Use Audio Modification Library module if you using other module which also patching audio_platform_info.xml and/or mixer_paths*.xml.
+- Use Audio Modification Library module if you using other module which also patching mixer_paths*.xml.
 - Delete /data/adb/modules/MicFix folder via recovery if you facing bootloop and send copied and zipped /data/system/dropbox files for fix.
 - Open issues with sending those patched files and full logcats if this module is not working for your device.
 
