@@ -30,7 +30,7 @@
 - Open issues with sending those patched files and full logcats if this module is not working for your device.
 
 ## Thanks for Donations
-- https://t.me/audioryukimods/2619
+- https://t.me/androidryukimodsdiscussions/2619
 - https://www.paypal.me/reiryuki
 
 ## Download
