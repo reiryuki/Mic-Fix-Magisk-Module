@@ -8,16 +8,12 @@
 - Magisk installed
 
 ## Tested
-- Android 10 arm64 CrDroid ROM
+- Android 10 CrDroid ROM
 
 ## Installation Guide
 - Install the module via Magisk Manager or Recovery
 - Install Audio Modification Library Module if you using other audio mods
 - Reboot
-
-## Tested on
-- Android Ryuki Mods Discussions Team
-- https://t.me/androidryukimodsdiscussions/25188
 
 ## Optionals
 - The default mic volume value is 6. You can increase the mic volume using this command before flashing the module. This is for example to use volume 7:
