@@ -1,7 +1,7 @@
 # Mic Fix Magisk Module
 
 ## Descriptions
-- Fixing bad quality or cracking sounds input of microphone in audio/video recording
+- Fixes bad quality or cracking sounds input of microphone in audio/video recording
 - Patching mixer_paths*.xml files systemlessly
 
 ## Requirements
@@ -12,10 +12,12 @@
 
 ## Installation Guide
 - Install the module via Magisk Manager or Recovery
-- Install Audio Modification Library Module if you using other audio mods
+- Install AML module only if using any other audio mod modules
 - Reboot
 
-## Optionals
+## Troubleshootings & Optionals
+- https://t.me/androidryukimodsdiscussions/29836
+- https://t.me/androidryukimodsdiscussions/60861
 - https://t.me/androidryukimodsdiscussions/58234
 
 ## Bug Report
