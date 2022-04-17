@@ -2,23 +2,42 @@ MODPATH=${0%/*}
 
 # patch audio platform info
 #FILE=`find $MODPATH/system -type f -name *audio*platform*info*.xml`
-#PART1=SND_DEVICE_IN_HANDSET_MIC
-#PART2=SND_DEVICE_IN_HANDSET_MIC_EXTERNAL
-#PART3=SND_DEVICE_IN_HANDSET_STEREO_DMIC
-#PART4=SND_DEVICE_IN_CAMCORDER_MIC
+#NAME='SND_DEVICE_IN_HANDSET_MIC
+#      SND_DEVICE_IN_HANDSET_MIC_EXTERNAL
+#      SND_DEVICE_IN_HANDSET_STEREO_DMIC
+#      SND_DEVICE_IN_HANDSET_GENERIC_QMIC
+#      SND_DEVICE_IN_HANDSET_DMIC_AEC_NS
+#      SND_DEVICE_IN_SPEAKER_DMIC_AEC_NS
+#      SND_DEVICE_IN_CAMCORDER_MIC
+#      SND_DEVICE_IN_HEADSET_MIC
+#      SND_DEVICE_IN_HEADSET_MIC_FLUENCE
+#      SND_DEVICE_IN_USB_HEADSET_MIC
+#      SND_DEVICE_IN_USB_HEADSET_HEX_MIC
+#      SND_DEVICE_IN_USB_HEADSET_HEX_MIC_AEC
+#      SND_DEVICE_IN_UNPROCESSED_MIC
+#      SND_DEVICE_IN_UNPROCESSED_STEREO_MIC
+#      SND_DEVICE_IN_UNPROCESSED_THREE_MIC
+#      SND_DEVICE_IN_UNPROCESSED_QUAD_MIC
+#      SND_DEVICE_IN_UNPROCESSED_HEADSET_MIC
+#      SND_DEVICE_IN_UNPROCESSED_USB_HEADSET_MIC
+#      SND_DEVICE_IN_UNPROCESSED_USB_HEADSET_HEX_MIC
+#      SND_DEVICE_IN_VOICE_SPEAKER_MIC
+#      SND_DEVICE_IN_VOICE_HEADSET_MIC
+#      SND_DEVICE_IN_VOICE_REC_MIC
+#      SND_DEVICE_IN_VOICE_REC_HEADSET_MIC
+#      SND_DEVICE_IN_VOICE_REC_TMIC
+#      SND_DEVICE_IN_VOICE_REC_QMIC_FLUENCE
+#      SND_DEVICE_IN_VOICE_REC_DMIC_FLUENCE
+#      SND_DEVICE_IN_VOICE_REC_MIC_AEC
+#      SND_DEVICE_IN_VOICE_REC_MIC_NS
+#      SND_DEVICE_IN_VOICE_RECOG_USB_HEADSET_MIC
+#      SND_DEVICE_IN_VOICE_RECOG_USB_HEADSET_HEX_MIC'
 #if [ "$FILE" ]; then
-#  if ! grep -Eq "$PART4\" acdb_id" $FILE; then
-#    sed -i "/<acdb_ids>/a\        <device name=\"$PART4\" acdb_id=\"0\"\/>" $FILE
-#  fi
-#  if ! grep -Eq "$PART3\" acdb_id" $FILE; then
-#    sed -i "/<acdb_ids>/a\        <device name=\"$PART3\" acdb_id=\"0\"\/>" $FILE
-#  fi
-#  if ! grep -Eq "$PART2\" acdb_id" $FILE; then
-#    sed -i "/<acdb_ids>/a\        <device name=\"$PART2\" acdb_id=\"0\"\/>" $FILE
-#  fi
-#  if ! grep -Eq "$PART1\" acdb_id" $FILE; then
-#    sed -i "/<acdb_ids>/a\        <device name=\"$PART1\" acdb_id=\"0\"\/>" $FILE
-#  fi
+#  for NAMES in $NAME; do
+#    if ! grep -Eq "$NAMES\" acdb_id" $FILE; then
+#      sed -i "/<acdb_ids>/a\        <device name=\"$NAMES\" acdb_id=\"0\"\/>" $FILE
+#    fi
+#  done
 #fi
 
 # function

@@ -1,5 +1,12 @@
 ui_print " "
 
+# magisk
+if [ -d /sbin/.magisk ]; then
+  MAGISKTMP=/sbin/.magisk
+else
+  MAGISKTMP=`find /dev -mindepth 2 -maxdepth 2 -type d -name .magisk`
+fi
+
 # info
 MODVER=`grep_prop version $MODPATH/module.prop`
 MODVERCODE=`grep_prop versionCode $MODPATH/module.prop`
@@ -119,13 +126,15 @@ DIR=`find $MODPATH/system/vendor -type d`
 for DIRS in $DIR; do
   chown 0.2000 $DIRS
 done
-if [ "$API" -gt 25 ]; then
-  magiskpolicy "dontaudit { vendor_file vendor_configs_file } labeledfs filesystem associate"
-  magiskpolicy "allow     { vendor_file vendor_configs_file } labeledfs filesystem associate"
-  magiskpolicy "dontaudit init { vendor_file vendor_configs_file } dir relabelfrom"
-  magiskpolicy "allow     init { vendor_file vendor_configs_file } dir relabelfrom"
-  magiskpolicy "dontaudit init { vendor_file vendor_configs_file } file relabelfrom"
-  magiskpolicy "allow     init { vendor_file vendor_configs_file } file relabelfrom"
+if [ "$API" -ge 26 ]; then
+  magiskpolicy --live "type vendor_file"
+  magiskpolicy --live "type vendor_configs_file"
+  magiskpolicy --live "dontaudit { vendor_file vendor_configs_file } labeledfs filesystem associate"
+  magiskpolicy --live "allow     { vendor_file vendor_configs_file } labeledfs filesystem associate"
+  magiskpolicy --live "dontaudit init { vendor_file vendor_configs_file } dir relabelfrom"
+  magiskpolicy --live "allow     init { vendor_file vendor_configs_file } dir relabelfrom"
+  magiskpolicy --live "dontaudit init { vendor_file vendor_configs_file } file relabelfrom"
+  magiskpolicy --live "allow     init { vendor_file vendor_configs_file } file relabelfrom"
   chcon -R u:object_r:vendor_file:s0 $MODPATH/system/vendor
   chcon -R u:object_r:vendor_configs_file:s0 $MODPATH/system/vendor/etc
   chcon -R u:object_r:vendor_configs_file:s0 $MODPATH/system/vendor/odm/etc
