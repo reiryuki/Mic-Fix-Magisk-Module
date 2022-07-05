@@ -1,7 +1,7 @@
 id=MicFix
 name=Mic Fix
-version=v2.2-R
-versionCode=12
+version=v2.3-beta.1
+versionCode=13
 author=Rei Ryuki the Fixer
 description=Fixes bad quality input of microphone in audio/video recording.
 
