@@ -22,6 +22,7 @@
 
 ## Tested on
 - Android 10 CrDroid ROM
+- Android 13 AOSP ROM
 
 ## Credits and contributors
 - https://t.me/viperatmos

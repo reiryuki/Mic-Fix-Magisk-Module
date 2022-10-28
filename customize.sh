@@ -1,11 +1,27 @@
-ui_print " "
+# space
+if [ "$BOOTMODE" == true ]; then
+  ui_print " "
+fi
 
 # magisk
 if [ -d /sbin/.magisk ]; then
   MAGISKTMP=/sbin/.magisk
 else
-  MAGISKTMP=`find /dev -mindepth 2 -maxdepth 2 -type d -name .magisk`
+  MAGISKTMP=`realpath /dev/*/.magisk`
 fi
+
+# path
+if [ "$BOOTMODE" == true ]; then
+  MIRROR=$MAGISKTMP/mirror
+else
+  MIRROR=
+fi
+SYSTEM=`realpath $MIRROR/system`
+PRODUCT=`realpath $MIRROR/product`
+VENDOR=`realpath $MIRROR/vendor`
+SYSTEM_EXT=`realpath $MIRROR/system/system_ext`
+ODM=`realpath /odm`
+MY_PRODUCT=`realpath /my_product`
 
 # optionals
 OPTIONALS=/sdcard/optionals.prop
@@ -20,11 +36,15 @@ ui_print " MagiskVersion=$MAGISK_VER"
 ui_print " MagiskVersionCode=$MAGISK_VER_CODE"
 ui_print " "
 
-# sepolicy.rule
+# mount
 if [ "$BOOTMODE" != true ]; then
+  mount -o rw -t auto /dev/block/bootdevice/by-name/cust /vendor
+  mount -o rw -t auto /dev/block/bootdevice/by-name/vendor /vendor
   mount -o rw -t auto /dev/block/bootdevice/by-name/persist /persist
   mount -o rw -t auto /dev/block/bootdevice/by-name/metadata /metadata
 fi
+
+# sepolicy.rule
 FILE=$MODPATH/sepolicy.sh
 DES=$MODPATH/sepolicy.rule
 if [ -f $FILE ] && [ "`grep_prop sepolicy.sh $OPTIONALS`" != 1 ]; then
@@ -48,77 +68,12 @@ ui_print " "
 # volume
 FILE=$MODPATH/.aml.sh
 PROP=`grep_prop mic.volume $OPTIONALS`
-if [ "$PROP" == 7 ]; then
-  ui_print "- Using mic volume 7"
-  sed -i 's/NUM=6/NUM=7/g' $FILE
-  sed -i '/#addon1/a\
-  sed -i "s/$OLD6/$NEW/g" $MODMP' $FILE
-  sed -i '/#addon2/a\
-  OLD6="\\"ADC1 Volume\\" value=\\"6\\""' $FILE
-  sed -i '/#addon3/a\
-  OLD6="\\"ADC2 Volume\\" value=\\"6\\""' $FILE
-  sed -i '/#addon4/a\
-  OLD6="\\"ADC3 Volume\\" value=\\"6\\""' $FILE
+if [ "$PROP" ]; then
+  ui_print "- Using mic volume $PROP"
+  sed -i "s/NUM=6/NUM=$PROP/g" $FILE
   ui_print " "
-elif [ "$PROP" == 8 ]; then
-  ui_print "- Using mic volume 8"
-  sed -i 's/NUM=6/NUM=8/g' $FILE
-  sed -i '/#addon1/a\
-  sed -i "s/$OLD6/$NEW/g" $MODMP\
-  sed -i "s/$OLD7/$NEW/g" $MODMP' $FILE
-  sed -i '/#addon2/a\
-  OLD6="\\"ADC1 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC1 Volume\\" value=\\"7\\""' $FILE
-  sed -i '/#addon3/a\
-  OLD6="\\"ADC2 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC2 Volume\\" value=\\"7\\""' $FILE
-  sed -i '/#addon4/a\
-  OLD6="\\"ADC3 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC3 Volume\\" value=\\"7\\""' $FILE
-  ui_print " "
-elif [ "$PROP" == 9 ]; then
-  ui_print "- Using mic volume 9"
-  sed -i 's/NUM=6/NUM=9/g' $FILE
-  sed -i '/#addon1/a\
-  sed -i "s/$OLD6/$NEW/g" $MODMP\
-  sed -i "s/$OLD7/$NEW/g" $MODMP\
-  sed -i "s/$OLD8/$NEW/g" $MODMP' $FILE
-  sed -i '/#addon2/a\
-  OLD6="\\"ADC1 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC1 Volume\\" value=\\"7\\""\
-  OLD8="\\"ADC1 Volume\\" value=\\"8\\""' $FILE
-  sed -i '/#addon3/a\
-  OLD6="\\"ADC2 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC2 Volume\\" value=\\"7\\""\
-  OLD8="\\"ADC2 Volume\\" value=\\"8\\""' $FILE
-  sed -i '/#addon4/a\
-  OLD6="\\"ADC3 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC3 Volume\\" value=\\"7\\""\
-  OLD8="\\"ADC3 Volume\\" value=\\"8\\""' $FILE
-  ui_print " "
-elif [ "$PROP" == 10 ]; then
-  ui_print "- Using mic volume 10"
-  sed -i 's/NUM=6/NUM=10/g' $FILE
-  sed -i '/#addon1/a\
-  sed -i "s/$OLD6/$NEW/g" $MODMP\
-  sed -i "s/$OLD7/$NEW/g" $MODMP\
-  sed -i "s/$OLD8/$NEW/g" $MODMP\
-  sed -i "s/$OLD9/$NEW/g" $MODMP' $FILE
-  sed -i '/#addon2/a\
-  OLD6="\\"ADC1 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC1 Volume\\" value=\\"7\\""\
-  OLD8="\\"ADC1 Volume\\" value=\\"8\\""\
-  OLD9="\\"ADC1 Volume\\" value=\\"9\\""' $FILE
-  sed -i '/#addon3/a\
-  OLD6="\\"ADC2 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC2 Volume\\" value=\\"7\\""\
-  OLD8="\\"ADC2 Volume\\" value=\\"8\\""\
-  OLD9="\\"ADC2 Volume\\" value=\\"9\\""' $FILE
-  sed -i '/#addon4/a\
-  OLD6="\\"ADC3 Volume\\" value=\\"6\\""\
-  OLD7="\\"ADC3 Volume\\" value=\\"7\\""\
-  OLD8="\\"ADC3 Volume\\" value=\\"8\\""\
-  OLD9="\\"ADC3 Volume\\" value=\\"9\\""' $FILE
+else
+  ui_print "- Using mic volume 6"
   ui_print " "
 fi
 
@@ -131,12 +86,14 @@ if [ "`grep_prop other.etc $OPTIONALS`" == 1 ]; then
 fi
 
 # permission
-ui_print "- Setting permission..."
-DIR=`find $MODPATH/system/vendor -type d`
-for DIRS in $DIR; do
-  chown 0.2000 $DIRS
-done
-ui_print " "
+if [ "$API" -ge 26 ]; then
+  ui_print "- Setting permission..."
+  DIR=`find $MODPATH/system/vendor -type d`
+  for DIRS in $DIR; do
+    chown 0.2000 $DIRS
+  done
+  ui_print " "
+fi
 
 
 
