@@ -2,7 +2,7 @@
 
 ## Descriptions
 - Fixes bad quality and cracking sounds input of microphone in audio/video recording by disabling handset noise canceler
-- Patching *audio*platform*info*.xml file systemlessly
+- Patching \*audio\*platform\*info\*.xml file systemlessly
 
 ## Requirements
 - Magisk or KernelSU installed
