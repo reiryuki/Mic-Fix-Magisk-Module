@@ -1,8 +1,8 @@
 id=MicFix
 name=Mic Fix
-version=v2.5
-versionCode=15
+version=v2.6
+versionCode=16
 author=Rei Ryuki the Fixer
-description=Fixes bad quality input of microphone in audio/video recording.
+description=Fixes bad quality input of microphone in audio/video recording by disabling handset noise canceler.
 
 

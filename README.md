@@ -1,14 +1,14 @@
 # Mic Fix Magisk Module
 
 ## Descriptions
-- Fixes bad quality or cracking sounds input of microphone in audio/video recording
-- Patching mixer_paths*.xml files systemlessly
+- Fixes bad quality and cracking sounds input of microphone in audio/video recording by disabling handset noise canceler
+- Patching *audio*platform*info*.xml file systemlessly
 
 ## Requirements
-- Magisk installed
+- Magisk or KernelSU installed
 
 ## Installation Guide & Download Link
-- Install this module https://www.pling.com/p/1532205/ via Magisk app or Recovery
+- Install this module https://www.pling.com/p/1532205/ via Magisk app or KernelSU app or Recovery if Magisk installed
 - This is also an audio mod so, you need to install AML Magisk Module https://t.me/androidryukimodsdiscussions/29836 if using any other audio mod module
 - Reboot
 
@@ -18,11 +18,7 @@
 - https://t.me/androidryukimodsdiscussions/58234
 
 ## Support & Bug Report
-- https://t.me/androidryukimodsdiscussions/2618 (Z folder is enough, no need logs)
-
-## Tested on
-- Android 10 CrDroid ROM
-- Android 13 AOSP ROM
+- https://t.me/androidryukimodsdiscussions/2618
 
 ## Credits and contributors
 - https://t.me/viperatmos
