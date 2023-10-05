@@ -1,4 +1,4 @@
-[ -z $MODPATH ] && MODPATH=${0%/*}
+[ ! "$MODPATH" ] && MODPATH=${0%/*}
 
 # destination
 MODAPI=`find $MODPATH -type f -name *audio*platform*info*.xml`
