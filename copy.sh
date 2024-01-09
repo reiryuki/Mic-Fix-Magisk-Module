@@ -1,4 +1,4 @@
-[ -z $MODPATH ] && MODPATH=${0%/*}
+[ ! "$MODPATH" ] && MODPATH=${0%/*}
 
 # function
 copy_dir_file() {
@@ -7,7 +7,7 @@ copy_dir_file() {
 }
 
 # audio file
-AUD=*audio*platform*info*.xml
+AUD="*audio*platform*info*.xml -o -name *mixer*paths*.xml"
 rm -f `find $MODPATH -type f -name $AUD`
 FILES=`find /system /odm /my_product -type f -name $AUD`
 for FILE in $FILES; do

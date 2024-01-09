@@ -4,40 +4,6 @@
 MODAPI=`find $MODPATH -type f -name *audio*platform*info*.xml`
 MODMP=`find $MODPATH -type f -name *mixer*paths*.xml`
 
-# function
-patch_mixer_paths() {
-NUM=6
-ROWS=`grep '"ADC1 Volume"' $MODMP | sed -e 's|<ctl name="ADC1 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
-for ROW in $ROWS; do
-  sed -i "s|\"ADC1 Volume\" value=\"$ROW\"|\"ADC1 Volume\" value=\"$NUM\"|g" $MODMP
-done
-ROWS=`grep '"ADC2 Volume"' $MODMP | sed -e 's|<ctl name="ADC2 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
-for ROW in $ROWS; do
-  sed -i "s|\"ADC2 Volume\" value=\"$ROW\"|\"ADC2 Volume\" value=\"$NUM\"|g" $MODMP
-done
-ROWS=`grep '"ADC3 Volume"' $MODMP | sed -e 's|<ctl name="ADC3 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
-for ROW in $ROWS; do
-  sed -i "s|\"ADC3 Volume\" value=\"$ROW\"|\"ADC3 Volume\" value=\"$NUM\"|g" $MODMP
-done
-NUM2=84
-ROWS=`grep '"IIR1 INP1 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP1 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
-for ROW in $ROWS; do
-  sed -i "s|\"IIR1 INP1 Volume\" value=\"$ROW\"|\"IIR1 INP1 Volume\" value=\"$NUM2\"|g" $MODMP
-done
-ROWS=`grep '"IIR1 INP2 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP2 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
-for ROW in $ROWS; do
-  sed -i "s|\"IIR1 INP2 Volume\" value=\"$ROW\"|\"IIR1 INP2 Volume\" value=\"$NUM2\"|g" $MODMP
-done
-ROWS=`grep '"IIR1 INP3 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP3 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
-for ROW in $ROWS; do
-  sed -i "s|\"IIR1 INP3 Volume\" value=\"$ROW\"|\"IIR1 INP3 Volume\" value=\"$NUM2\"|g" $MODMP
-done
-ROWS=`grep '"IIR1 INP4 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP4 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
-for ROW in $ROWS; do
-  sed -i "s|\"IIR1 INP4 Volume\" value=\"$ROW\"|\"IIR1 INP4 Volume\" value=\"$NUM2\"|g" $MODMP
-done
-}
-
 # patch audio platform info
 if [ "$MODAPI" ]; then
   if ! grep -q '<acdb_ids>' $MODAPI; then
@@ -96,7 +62,44 @@ if [ "$MODAPI" ]; then
   fi
 fi
         
+# function
+patch_adc_volume() {
+NUM=
+ROWS=`grep '"ADC1 Volume"' $MODMP | sed -e 's|<ctl name="ADC1 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
+for ROW in $ROWS; do
+  sed -i "s|\"ADC1 Volume\" value=\"$ROW\"|\"ADC1 Volume\" value=\"$NUM\"|g" $MODMP
+done
+ROWS=`grep '"ADC2 Volume"' $MODMP | sed -e 's|<ctl name="ADC2 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
+for ROW in $ROWS; do
+  sed -i "s|\"ADC2 Volume\" value=\"$ROW\"|\"ADC2 Volume\" value=\"$NUM\"|g" $MODMP
+done
+ROWS=`grep '"ADC3 Volume"' $MODMP | sed -e 's|<ctl name="ADC3 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
+for ROW in $ROWS; do
+  sed -i "s|\"ADC3 Volume\" value=\"$ROW\"|\"ADC3 Volume\" value=\"$NUM\"|g" $MODMP
+done
+}
+patch_iir_inp_volume() {
+NUM2=
+ROWS=`grep '"IIR1 INP1 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP1 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
+for ROW in $ROWS; do
+  sed -i "s|\"IIR1 INP1 Volume\" value=\"$ROW\"|\"IIR1 INP1 Volume\" value=\"$NUM2\"|g" $MODMP
+done
+ROWS=`grep '"IIR1 INP2 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP2 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
+for ROW in $ROWS; do
+  sed -i "s|\"IIR1 INP2 Volume\" value=\"$ROW\"|\"IIR1 INP2 Volume\" value=\"$NUM2\"|g" $MODMP
+done
+ROWS=`grep '"IIR1 INP3 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP3 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
+for ROW in $ROWS; do
+  sed -i "s|\"IIR1 INP3 Volume\" value=\"$ROW\"|\"IIR1 INP3 Volume\" value=\"$NUM2\"|g" $MODMP
+done
+ROWS=`grep '"IIR1 INP4 Volume"' $MODMP | sed -e 's|<ctl name="IIR1 INP4 Volume" value="||g' -e 's|" />||g' -e 's|"/>||g'`
+for ROW in $ROWS; do
+  sed -i "s|\"IIR1 INP4 Volume\" value=\"$ROW\"|\"IIR1 INP4 Volume\" value=\"$NUM2\"|g" $MODMP
+done
+}
 
+# patch mixer paths
+#patch_adc_volume
 
 
 

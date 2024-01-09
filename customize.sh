@@ -1,16 +1,19 @@
 # space
 ui_print " "
 
+# var
+UID=`id -u`
+
 # log
 if [ "$BOOTMODE" != true ]; then
-  FILE=/sdcard/$MODID\_recovery.log
+  FILE=/data/media/"$UID"/$MODID\_recovery.log
   ui_print "- Log will be saved at $FILE"
   exec 2>$FILE
   ui_print " "
 fi
 
 # optionals
-OPTIONALS=/sdcard/optionals.prop
+OPTIONALS=/data/media/"$UID"/optionals.prop
 if [ ! -f $OPTIONALS ]; then
   touch $OPTIONALS
 fi
@@ -59,18 +62,14 @@ remove_sepolicy_rule
 ui_print " "
 
 # volume
-unused() {
 FILE=$MODPATH/.aml.sh
 PROP=`grep_prop mic.volume $OPTIONALS`
 if [ "$PROP" ]; then
+  sed -i 's|#patch_adc_volume|patch_adc_volume|g' $FILE
   ui_print "- Using mic volume $PROP"
-  sed -i "s/NUM=6/NUM=$PROP/g" $FILE
-  ui_print " "
-else
-  ui_print "- Using mic volume 6"
+  sed -i "s|NUM=|NUM=$PROP|g" $FILE
   ui_print " "
 fi
-}
 
 # run
 . $MODPATH/copy.sh

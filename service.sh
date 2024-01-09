@@ -13,10 +13,8 @@ if [ "$API" -ge 24 ]; then
 else
   SERVER=mediaserver
 fi
-PID=`pidof $SERVER`
-if [ "$PID" ]; then
-  killall $SERVER
-fi
+killall $SERVER\
+ android.hardware.audio@4.0-service-mediatek
 
 # wait
 sleep 20
