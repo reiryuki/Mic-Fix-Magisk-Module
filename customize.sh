@@ -3,6 +3,7 @@ ui_print " "
 
 # var
 UID=`id -u`
+[ ! "$UID" ] && UID=0
 
 # log
 if [ "$BOOTMODE" != true ]; then
@@ -23,6 +24,13 @@ if [ "`grep_prop debug.log $OPTIONALS`" == 1 ]; then
   ui_print "- The install log will contain detailed information"
   set -x
   ui_print " "
+fi
+
+# recovery
+if [ "$BOOTMODE" != true ]; then
+  MODPATH_UPDATE=`echo $MODPATH | sed 's|modules/|modules_update/|g'`
+  rm -f $MODPATH/update
+  rm -rf $MODPATH_UPDATE
 fi
 
 # run
