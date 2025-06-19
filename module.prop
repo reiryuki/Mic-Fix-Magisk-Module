@@ -1,7 +1,7 @@
 id=MicFix
 name=Mic Fix
-version=v2.10
-versionCode=20
+version=v2.11
+versionCode=21
 author=Rei Ryuki the Fixer
 description=Fixes bad quality input of microphone in audio/video recording by disabling handset noise canceler.
 
