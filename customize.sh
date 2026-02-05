@@ -71,6 +71,7 @@ if [ "$PROP" ]; then
 fi
 
 # run
+MODSYSTEM=/system
 . $MODPATH/copy.sh
 . $MODPATH/.aml.sh
 
