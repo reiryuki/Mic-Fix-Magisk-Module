@@ -7,7 +7,7 @@ copy_dir_file() {
 }
 
 # audio file
-AUD="*audio*platform*info*.xml -o -name *mixer*paths*.xml"
+AUD=`cat $MODPATH/audio.txt`
 rm -f `find $MODPATH -type f -name $AUD`
 FILES=`find /system /odm /my_product -type f -name $AUD`
 for FILE in $FILES; do

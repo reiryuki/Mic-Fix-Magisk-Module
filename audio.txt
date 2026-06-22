@@ -1,0 +1,1 @@
+*audio*platform*info*.xml -o -name *mixer*paths*.xml
